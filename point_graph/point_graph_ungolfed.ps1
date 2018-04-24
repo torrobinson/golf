@@ -1,16 +1,19 @@
+cls
 #param($array)
 $array=2,4,6,8,10,9,8,7,6,5,4,3,2,1,3,5,7,9,11
 $arrayLength=$array.length
 $lines=@();
+$index=0
 
 # Pad function
 $pad={
-    $args[0]|%{'{0:0#}'-f$_}
-}
+    $args|%{'{0:0#}'-f$_}
+};
 
 # count down from the highest value to create the vertical axis
-(($array|sort)[-1]..1)|%{
-    [char[]]$charArray=
+($array|sort)[-1]..1|%{
+    $lines+=,
+    [char[]](
     # The padded value
     (&$pad $_)+
 
@@ -18,27 +21,25 @@ $pad={
     "|"+
 
     # and the background dots
-    "."*($arrayLength*3-2)
+    "."*($arrayLength*3-2))
 
-    $lines+=,$charArray
-}
+    
+};
 
 
 
 
 
 # Plot the points on our "2D array" of arrays of char arays
-$index=0
 $array|%{
-    $lines[$lines.length-$_][3+$index*3]='o'
-    $index++
-}
+    $lines[$lines.length-$_][3+$index++*3]='o'
+};
 
 
 
 
 # Print lines
-$lines|%{$_-join''}
+$lines|%{$_-join''};
 
 # Bottom axis
 #   line
