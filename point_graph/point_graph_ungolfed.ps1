@@ -7,7 +7,7 @@ $index=0
 
 # Pad function
 $pad={
-    $args|%{'{0:0#}'-f$_}
+    '{0:0#}'-f$args
 };
 
 # count down from the highest value to create the vertical axis
@@ -39,11 +39,12 @@ $array|%{
 
 
 # Print lines
-$lines|%{$_-join''};
+$lines|%{-join$_};
+
 
 # Bottom axis
 #   line
 "  +"+"-"*($arrayLength*3-2)
-#   and numbers
 
-"  "+(1..$arrayLength|%{&$pad $_})
+#   and numbers
+"  "+1..$arrayLength|%{&$pad $_}
