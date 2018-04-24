@@ -1,7 +1,7 @@
 cls
 #param($array)
 $array=2,4,6,8,10,9,8,7,6,5,4,3,2,1,3,5,7,9,11
-$arrayLength=$array.length
+$arrayLength=$array.count
 $lines=@();
 $index=0
 
@@ -32,7 +32,7 @@ $pad={
 
 # Plot the points on our "2D array" of arrays of char arays
 $array|%{
-    $lines[$lines.length-$_][3+$index++*3]='o'
+    $lines[$lines.count-$_][3+$index++*3]='o'
 };
 
 
