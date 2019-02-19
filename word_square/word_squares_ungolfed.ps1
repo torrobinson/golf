@@ -1,4 +1,4 @@
-﻿$w="fart"
+﻿$w="test"
 
 # word length
 $length = $w|% Le*;
